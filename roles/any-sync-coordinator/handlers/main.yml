@@ -1,0 +1,6 @@
+---
+- name: Restart any-sync-coordinator
+  systemd:
+    name: any-sync-coordinator
+    daemon_reload: yes
+    state: restarted

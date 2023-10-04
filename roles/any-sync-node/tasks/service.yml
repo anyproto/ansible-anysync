@@ -1,0 +1,7 @@
+---
+- name: Start any-sync-node service
+  systemd:
+    name: any-sync-node
+    enabled: yes
+    state: started
+    daemon_reload: yes

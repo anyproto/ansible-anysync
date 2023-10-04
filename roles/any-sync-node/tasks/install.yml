@@ -1,0 +1,21 @@
+---
+- name: Ensure group
+  group:
+    name: "{{ any_sync_node_group }}"
+    state: present
+
+- name: Сreate a user
+  user:
+    name: "{{ any_sync_node_user }}"
+    group: "{{ any_sync_node_group }}"
+    state: present
+
+- name: Remote RPM install with yum
+  yum:
+    name: "{{ any_sync_node_download_url_rhel }}"
+  when: ansible_os_family == 'RedHat'
+
+- name: Remote DEB install with apt
+  apt:
+    deb: "{{ any_sync_node_download_url_debian }}"
+  when: ansible_os_family == 'Debian'

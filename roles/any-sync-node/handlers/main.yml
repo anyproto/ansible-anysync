@@ -1,0 +1,6 @@
+---
+- name: Restart any-sync-node
+  systemd:
+    name: any-sync-node
+    daemon_reload: yes
+    state: restarted

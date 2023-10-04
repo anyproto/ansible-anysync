@@ -1,0 +1,22 @@
+#jinja2: lstrip_blocks: "True"
+---
+account:
+  peerId: {{ any_sync_accounts[inventory_hostname]['peerId'] }}
+  peerKey: {{ any_sync_accounts[inventory_hostname]['peerKey'] }}
+  signingKey: {{ any_sync_accounts[inventory_hostname]['signingKey'] }}
+network:
+  networkId: {{ any_sync_network.networkId }}
+  nodes:
+  {% for node in any_sync_network.nodes %}
+  - peerId: {{ node.peerId }}
+    addresses:
+    {% for address in node.addresses %}
+    - {{ address }}
+    {% endfor %}
+    types:
+    {% for type in node.types %}
+    - {{ type }}
+    {% endfor %}
+  {% endfor -%}
+
+{{ any_sync_coordinator_config | to_nice_yaml(indent=2) }}

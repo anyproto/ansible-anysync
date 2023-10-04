@@ -1,0 +1,31 @@
+---
+
+- name: Ensure config path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ any_sync_filenode_user }}"
+    group: "{{ any_sync_filenode_group }}"
+  with_items:
+    - "{{ any_sync_filenode_config_path }}"
+    - "{{ any_sync_filenode_networkStorePath }}"
+    - "/home/{{ any_sync_filenode_user }}/.aws"
+
+- name: Copy credentials aws_cli
+  template:
+    src: aws_credentials.j2
+    dest: "/home/{{ any_sync_filenode_user }}/.aws/credentials"
+    mode: 0755
+
+- name: Copy config file
+  template:
+    src: config.yml.j2
+    dest: "{{ any_sync_filenode_config_path }}/config.yml"
+  notify: Restart any-sync-filenode
+
+- name: Copy systemd init file
+  template:
+    src: service.j2
+    dest: /etc/systemd/system/any-sync-filenode.service
+  notify: Restart any-sync-filenode

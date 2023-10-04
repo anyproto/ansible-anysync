@@ -1,0 +1,15 @@
+#jinja2: lstrip_blocks: "True"
+---
+networkId: {{ any_sync_network.networkId }}
+nodes:
+{% for node in any_sync_network.nodes %}
+- peerId: {{ node.peerId }}
+  addresses:
+  {% for address in node.addresses %}
+  - {{ address }}
+  {% endfor %}
+  types:
+  {% for type in node.types %}
+  - {{ type }}
+  {% endfor %}
+{% endfor -%}

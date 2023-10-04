@@ -1,0 +1,19 @@
+[Unit]
+Description=filenode from any-sync protocol
+Wants=network-online.target
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+User={{ any_sync_filenode_user }}
+Group={{ any_sync_filenode_group }}
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+ExecStart=/bin/any-sync-filenode -c {{ any_sync_filenode_config_path }}/config.yml
+Restart=on-failure
+RestartSec=5
+SyslogIdentifier=any-sync-filenode
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target

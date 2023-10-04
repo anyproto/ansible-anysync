@@ -1,0 +1,7 @@
+---
+- name: Start any-sync-coordinator service
+  systemd:
+    name: any-sync-coordinator
+    enabled: yes
+    state: started
+    daemon_reload: yes

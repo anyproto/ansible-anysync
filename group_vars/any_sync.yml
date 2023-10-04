@@ -1,0 +1,66 @@
+---
+any_sync_accounts:
+  any-sync-node1:
+    peerId: 12D3KooWLTVK3VgXziU8ZcvvHUebueSBPiJNjXBxm3DQWtqsCbWD
+    peerKey: <change me>
+    signingKey: <change me>
+  any-sync-node2:
+    peerId: 12D3KooWBTWo5KVveQuVEA4VeivgbS7LxGkTgmWspEtpaw3D5xXw
+    peerKey: <change me>
+    signingKey: <change me>
+  any-sync-node3:
+    peerId: 12D3KooWF8HJnjL8MDUAExyg7yEAXhcXKzMwsn3dvivDjKWe7NN5
+    peerKey: <change me>
+    signingKey: <change me>
+  any-sync-filenode1:
+    peerId: 12D3KooWBjzGAnG3Xk8x2PPsCS6z2Hm1gE23NVnmNQEXcDqS7b8A
+    peerKey: <change me>
+    signingKey: <change me>
+  any-sync-coordinator1:
+    peerId: 12D3KooWAiMEfdAdr3t5JnXBxnDfbsX3pN1FvULz8FFWeN1WMSS
+    peerKey: <change me>
+    signingKey: <change me>
+  any-sync-consensusnode1:
+    peerId: 12D3KooWLjZqEbB2sMyqVXZYnhRPR9NvWuRzNUJ4XFi9mY8QKcG
+    peerKey: <change me>
+    signingKey: <change me>
+
+any_sync_network:
+  networkId: N5787WrcATL3f9kDUVxz9yeexEoxxmBLQRhJ47SBNBXEhadc
+  nodes:
+  - peerId: 12D3KooWLTVK3VgXziU8ZcvvHUebueSBPiJNjXBxm3DQWtqsCbWD
+    addresses:
+    - any-sync-node1:443
+    - quic://nany-sync-node1:5430
+    types:
+    - tree
+  - peerId: 12D3KooWBTWo5KVveQuVEA4VeivgbS7LxGkTgmWspEtpaw3D5xXw
+    addresses:
+    - any-sync-node2:443
+    - quic://any-sync-node2:5430
+    types:
+    - tree
+  - peerId: 12D3KooWF8HJnjL8MDUAExyg7yEAXhcXKzMwsn3dvivDjKWe7NN5
+    addresses:
+    - any-sync-node3:443
+    - quic://any-sync-node3:5430
+    types:
+    - tree
+  - peerId: 12D3KooWBjzGAnG3Xk8x2PPsCS6z2Hm1gE23NVnmNQEXcDqS7b8A
+    addresses:
+    - any-sync-filenode1:443
+    - quic://any-sync-filenode1:5430
+    types:
+    - file
+  - peerId: 12D3KooWAiMEfdAdr3t5JnXBxnDfbsX3pN1FvULz8FFWeN1WMSS
+    addresses:
+    - any-sync-coordinator1:443
+    - quic://any-sync-coordinator1:5430
+    types:
+    - coordinator
+  - peerId: 12D3KooWLjZqEbB2sMyqVXZYnhRPR9NvWuRzNUJ4XFi9mY8QKcG
+    addresses:
+    - any-sync-consensusnode1:443
+    - quic://any-sync-consensusnode1:5430
+    types:
+    - consensus
