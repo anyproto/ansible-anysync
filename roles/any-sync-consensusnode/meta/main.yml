@@ -1,0 +1,18 @@
+---
+galaxy_info:
+  author: Kirill Shklyaev <kirill@anytype.io>
+  description: Install any-sync-consensusnode from official repository.
+  license: MIT
+  company: Anytype, INC
+
+  min_ansible_version: "2.11"
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - jammy
+
+dependencies: []
