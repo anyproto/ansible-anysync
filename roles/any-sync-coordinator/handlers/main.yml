@@ -4,3 +4,9 @@
     name: any-sync-coordinator
     daemon_reload: yes
     state: restarted
+
+- name: Apply network config
+  run_once: true
+  become_user: "{{ any_sync_coordinator_user }}"
+  shell:
+    cmd: "any-sync-confapply -c {{ any_sync_coordinator_config_path }}/config.yml -n {{ any_sync_coordinator_config_path }}/network.yml -e"

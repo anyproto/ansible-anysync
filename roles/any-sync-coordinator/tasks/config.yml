@@ -21,7 +21,7 @@
   template:
     src: network.yml.j2
     dest: "{{ any_sync_coordinator_config_path }}/network.yml"
-  notify: Restart any-sync-coordinator
+  notify: Apply network config
 
 - name: Copy systemd init file
   template:
