@@ -1,0 +1,23 @@
+---
+namespace: mighty_sponge
+name: ansible-anysync
+
+version: 1.0.0
+readme: README.md
+authors:
+  - Kirill Shklyaev <kirill@anytype.io>
+
+description: Ansible roles for deploy any-sync-* daemons.
+
+license_file: LICENSE.md
+
+tags:
+  - any-sync
+  - any-sync-node
+  - any-sync-consensusnode
+  - any-sync-coordinator
+  - any-sync-filenode
+
+repository: https://github.com/anyproto/ansible-anysync
+documentation: https://github.com/anyproto/ansible-anysync
+issues: https://github.com/anyproto/ansible-anysync/issues
