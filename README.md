@@ -16,7 +16,7 @@ You can read the documentation on using any-sync [here](https://tech.anytype.io/
 
 ### Prerequisites
 
-* Minimum Ansible version of 2.10.0 is installed to execute these roles
+* Minimum Ansible version of 2.11 is installed to execute these roles
 * Redis
 * MongoDB
 * S3 object storage (this repository features integration with aws s3)
