@@ -1,23 +1,24 @@
 ---
-- hosts: any_sync
+- name: Deploy any-sync-coordinator
+  hosts: any_sync_coordinator
   become: true
-  tasks:
-    - name: Deploy any-sync-coordinator
-      include_role:
-        name: any-sync-coordinator
-      when: "'any_sync_coordinator' in group_names"
+  roles:
+    - any_sync_coordinator
 
-    - name: Deploy any-sync-consensusnode
-      include_role:
-        name: any-sync-consensusnode
-      when: "'any_sync_consensusnode' in group_names"
+- name: Deploy any-sync-node
+  hosts: any_sync_node
+  become: true
+  roles:
+    - any_sync_node
 
-    - name: Deploy any-sync-filenode
-      include_role:
-        name: any-sync-filenode
-      when: "'any_sync_filenode' in group_names"
+- name: Deploy any-sync-consensusnode
+  hosts: any_sync_consensusnode
+  become: true
+  roles:
+    - any_sync_consensusnode
 
-    - name: Deploy any-sync-node
-      include_role:
-        name: any-sync-node
-      when: "'any_sync_node' in group_names"
+- name: Deploy any-sync-filenode
+  hosts: any_sync_filenode
+  become: true
+  roles:
+    - any_sync_filenode
