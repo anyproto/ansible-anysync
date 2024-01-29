@@ -1,66 +1,69 @@
 ---
+any_type_yamux_port: 1000
+any_sync_quic_port: 2000
+
 any_sync_accounts:
   any-sync-node1:
-    peerId: 12D3KooWLTVK3VgXziU8ZcvvHUebueSBPiJNjXBxm3DQWtqsCbWD
-    peerKey: <change me>
-    signingKey: <change me>
+    peerId: 12D3KooWRyBw2GnQskP8kUFD91Ja46ecfa33VXs8mcjVv3N4T1dQ
+    peerKey: ixxHUiWSGpLJvP3b2NA9os8qjNQYe75YXKVAmfTdidfv/aTAoEZ0F9brWQtS51BqX5vxq6l0beq0e1TYgiSSnw==
+    signingKey: ixxHUiWSGpLJvP3b2NA9os8qjNQYe75YXKVAmfTdidfv/aTAoEZ0F9brWQtS51BqX5vxq6l0beq0e1TYgiSSnw==
   any-sync-node2:
-    peerId: 12D3KooWBTWo5KVveQuVEA4VeivgbS7LxGkTgmWspEtpaw3D5xXw
-    peerKey: <change me>
-    signingKey: <change me>
+    peerId: 12D3KooWQ21pt8h1UJCiKSYSMqEgu1PTVcfPyjRf1neHzT4Yjzde
+    peerKey: Oy3wc92EiAk9/7QuGKCGjQzjm8NPv3lLrCM2rC3s3IzS/5XcnLOu69qYTnu3HfsNOx6nSS1jtNhLYCCbPTvUsQ==
+    signingKey: Oy3wc92EiAk9/7QuGKCGjQzjm8NPv3lLrCM2rC3s3IzS/5XcnLOu69qYTnu3HfsNOx6nSS1jtNhLYCCbPTvUsQ==
   any-sync-node3:
-    peerId: 12D3KooWF8HJnjL8MDUAExyg7yEAXhcXKzMwsn3dvivDjKWe7NN5
-    peerKey: <change me>
-    signingKey: <change me>
-  any-sync-filenode1:
-    peerId: 12D3KooWBjzGAnG3Xk8x2PPsCS6z2Hm1gE23NVnmNQEXcDqS7b8A
-    peerKey: <change me>
-    signingKey: <change me>
+    peerId: 12D3KooWRy6YsEMBgqi5uzseug3dJsq5iFBbQmRsMyXmDPDbFS7j
+    peerKey: euJieFMweIDeIbIjNJLFJn6tJiJRoyPRNk3NDN7wOi/v947g6seIzlKHDx+QeXK/5TsABnX5hCbi3CcEUZdXWg==
+    signingKey: euJieFMweIDeIbIjNJLFJn6tJiJRoyPRNk3NDN7wOi/v947g6seIzlKHDx+QeXK/5TsABnX5hCbi3CcEUZdXWg==
   any-sync-coordinator1:
-    peerId: 12D3KooWAiMEfdAdr3t5JnXBxnDfbsX3pN1FvULz8FFWeN1WMSS
-    peerKey: <change me>
-    signingKey: <change me>
+    peerId: 12D3KooWRqFJtDMstqtcYAKZYEuGksD8A5WTHJZsFFk5beyrCVsq
+    peerKey: NPJc2soR53KQE9llBMdFnOO9kgTF2kwPXJ9e0xVBND/t9NC80zaSo3cMMKCI8Hp7MMFHvBIyYRJyes6ao6LMfA==
+    signingKey: "lrX4yWqQmHyN1zNh/tCz0h+53V2RJ4CtH3mbsK30jihz/yJuhULdvayk0WkpQv5GSm7Q408zKlkO0b+yblazpg=="
+  any-sync-filenode1:
+    peerId: 12D3KooWCHZk6EwaYtAFS81pGrn1t5CCgBtTVKSxzuJkLYix8zwQ
+    peerKey: x0iUgSGBqiyKBvlQl3T+LDaAwSA6J1Z/ebrCtuFawegkryS+P9tv/G7D/g3rwoFSaL4yz8G8eyElG/KhmiXLvw==
+    signingKey: x0iUgSGBqiyKBvlQl3T+LDaAwSA6J1Z/ebrCtuFawegkryS+P9tv/G7D/g3rwoFSaL4yz8G8eyElG/KhmiXLvw==
   any-sync-consensusnode1:
-    peerId: 12D3KooWLjZqEbB2sMyqVXZYnhRPR9NvWuRzNUJ4XFi9mY8QKcG
-    peerKey: <change me>
-    signingKey: <change me>
+    peerId: 12D3KooWG52DEyA8hk4UbdzEnfPfyBZ1MLjcN2Ts7cDQkoYHo1U1
+    peerKey: 5rbynfEBmolXGZf6pqJAMQmo2yFR+tS9Wj4XmUHqeEtc50Svnt4VnYceL1H72NHNIB+UsJbHHOBpMgNGtHh2rg==
+    signingKey: lrX4yWqQmHyN1zNh/tCz0h+53V2RJ4CtH3mbsK30jihz/yJuhULdvayk0WkpQv5GSm7Q408zKlkO0b+yblazpg==
 
 any_sync_network:
-  networkId: N5787WrcATL3f9kDUVxz9yeexEoxxmBLQRhJ47SBNBXEhadc
+  networkId: "N6jGqb6SfHa3aENsCjvnSMXFR9F3eZUhCCziqs28rkUyJRWw"
   nodes:
-  - peerId: 12D3KooWLTVK3VgXziU8ZcvvHUebueSBPiJNjXBxm3DQWtqsCbWD
+  - peerId: "{{ any_sync_accounts['any-sync-node1'].peerId }}"
     addresses:
-    - any-sync-node1:443
-    - quic://nany-sync-node1:5430
+    - "{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_quic_port }}"
     types:
     - tree
-  - peerId: 12D3KooWBTWo5KVveQuVEA4VeivgbS7LxGkTgmWspEtpaw3D5xXw
+  - peerId: "{{ any_sync_accounts['any-sync-node2'].peerId }}"
     addresses:
-    - any-sync-node2:443
-    - quic://any-sync-node2:5430
+    - "{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_sync_quic_port }}"
     types:
     - tree
-  - peerId: 12D3KooWF8HJnjL8MDUAExyg7yEAXhcXKzMwsn3dvivDjKWe7NN5
+  - peerId: "{{ any_sync_accounts['any-sync-node3'].peerId }}"
     addresses:
-    - any-sync-node3:443
-    - quic://any-sync-node3:5430
+    - "{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_sync_quic_port }}"
     types:
     - tree
-  - peerId: 12D3KooWBjzGAnG3Xk8x2PPsCS6z2Hm1gE23NVnmNQEXcDqS7b8A
+  - peerId: "{{ any_sync_accounts['any-sync-coordinator1'].peerId }}"
     addresses:
-    - any-sync-filenode1:443
-    - quic://any-sync-filenode1:5430
-    types:
-    - file
-  - peerId: 12D3KooWAiMEfdAdr3t5JnXBxnDfbsX3pN1FvULz8FFWeN1WMSS
-    addresses:
-    - any-sync-coordinator1:443
-    - quic://any-sync-coordinator1:5430
+    - "{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_sync_quic_port }}"
     types:
     - coordinator
-  - peerId: 12D3KooWLjZqEbB2sMyqVXZYnhRPR9NvWuRzNUJ4XFi9mY8QKcG
+  - peerId: "{{ any_sync_accounts['any-sync-filenode1'].peerId }}"
     addresses:
-    - any-sync-consensusnode1:443
-    - quic://any-sync-consensusnode1:5430
+    - "{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_sync_quic_port }}"
+    types:
+    - file
+  - peerId: "{{ any_sync_accounts['any-sync-consensusnode1'].peerId }}"
+    addresses:
+    - "{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_type_yamux_port }}"
+    - "quic://{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_sync_quic_port }}"
     types:
     - consensus
