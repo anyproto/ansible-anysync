@@ -1,26 +1,35 @@
 on:
   push:
     tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - '*.*.*'
 
-name: release
+name: Publish release on GH and Ansible Galaxy
 
 permissions: write-all
 
 jobs:
   create_release:
-    name: create release
     runs-on: ubuntu-latest
-    outputs:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Set up Python3
+        uses: actions/setup-python@v5
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
+          python-version: '3.x'
+
+      - name: Install Ansible.
+        run: pip3 install ansible-core
+
+      - name: Update version for galaxy
+        run: |
+          sed -i "s/%VERSION%/${{ github.ref_name }}/g" galaxy.yml
+
+      - name: Trigger a new import on Galaxy.
+        run: |
+          ansible-galaxy collection build
+          ansible-galaxy collection publish --api-key ${{ secrets.GALAXY_API_KEY }} ./mighty_sponge-any_sync-${{ github.ref_name }}.tar.gz
+
+      - name: Create GH Release
+        uses: softprops/action-gh-release@v0.1.15
