@@ -16,10 +16,10 @@ You can read the documentation on using any-sync [here](https://tech.anytype.io/
 
 ### Prerequisites
 
-* Minimum Ansible version of 2.11 is installed to execute these roles
-* Redis
-* MongoDB
-* S3 object storage (this repository features integration with aws s3)
+* Minimum Ansible v2.11 recommended
+* [Redis with Bloom module](https://github.com/RedisBloom/RedisBloom)
+* MongoDB (version ≥6 recommended)
+* S3 object storage: AWS S3 or self-hosted solution (for example [minio](https://github.com/minio/minio))
 
 ### Installing
 
