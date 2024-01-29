@@ -5,7 +5,7 @@ name: any_sync
 version: %VERSION%
 readme: README.md
 authors:
-  - Kirill Shklyaev <kirill@anytype.io>
+  - anyproto
 
 description: Ansible roles for deploy any-sync-* daemons.
 
