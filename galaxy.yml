@@ -2,7 +2,7 @@
 namespace: mighty_sponge
 name: any_sync
 
-version: 1.0.0
+version: %VERSION%
 readme: README.md
 authors:
   - Kirill Shklyaev <kirill@anytype.io>
