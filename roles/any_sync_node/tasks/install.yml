@@ -10,6 +10,18 @@
     group: "{{ any_sync_node_group }}"
     state: present
 
+- name: Ensure config and storage path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ any_sync_node_user }}"
+    group: "{{ any_sync_node_group }}"
+  with_items:
+    - "{{ any_sync_node_config_path }}"
+    - "{{ any_sync_node_networkStorePath }}"
+    - "{{ any_sync_node_storage_path }}"
+
 - name: Remote RPM install with yum
   yum:
     name: "{{ any_sync_node_download_url_rhel }}"

@@ -10,6 +10,17 @@
     group: "{{ any_sync_consensusnode_group }}"
     state: present
 
+- name: Ensure skeleton paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ any_sync_consensusnode_user }}"
+    group: "{{ any_sync_consensusnode_group }}"
+  with_items:
+    - "{{ any_sync_consensusnode_config_path }}"
+    - "{{ any_sync_consensusnode_networkStorePath }}"
+
 - name: Remote RPM install with yum
   yum:
     name: "{{ any_sync_consensusnode_download_url_rhel }}"

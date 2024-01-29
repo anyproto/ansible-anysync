@@ -1,16 +1,5 @@
 ---
 
-- name: Ensure config path
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-    owner: "{{ any_sync_coordinator_user }}"
-    group: "{{ any_sync_coordinator_group }}"
-  with_items:
-    - "{{ any_sync_coordinator_config_path }}"
-    - "{{ any_sync_coordinator_networkStorePath }}"
-
 - name: Copy config file
   template:
     src: config.yml.j2
@@ -21,10 +10,15 @@
   template:
     src: network.yml.j2
     dest: "{{ any_sync_coordinator_config_path }}/network.yml"
-  notify: Apply network config
 
 - name: Copy systemd init file
   template:
     src: service.j2
     dest: /etc/systemd/system/any-sync-coordinator.service
   notify: Restart any-sync-coordinator
+
+- name: Apply network configuration
+  run_once: true
+  shell: |
+    sleep 10
+    any-sync-confapply -c {{ any_sync_coordinator_config_path }}/config.yml -n {{ any_sync_coordinator_config_path }}/network.yml -e

@@ -10,34 +10,17 @@
     group: "{{ any_sync_filenode_group }}"
     state: present
 
-- name: Download AWS CLI package
-  become: false
-  get_url:
-    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
-    dest: "/tmp/awscliv2.zip"
-  register: _download_archive
-  until: _download_archive is succeeded
-  retries: 5
-  delay: 2
-
-- name: Extract AWS CLI package
-  become: false
-  unarchive:
-    src: "/tmp/awscliv2.zip"
-    dest: "/tmp/"
-    creates: "/tmp/awscliv2"
-    remote_src: yes
-
-- name: Check if AWS CLI is installed
-  command: aws --version
-  register: aws_version
-  ignore_errors: yes
-
-- name: Install AWS CLI
-  shell: sudo ./aws/install
-  args:
-    chdir: /tmp/
-  when: "'aws' not in aws_version.stderr"
+- name: Ensure config path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ any_sync_filenode_user }}"
+    group: "{{ any_sync_filenode_group }}"
+  with_items:
+    - "{{ any_sync_filenode_config_path }}"
+    - "{{ any_sync_filenode_networkStorePath }}"
+    - "/home/{{ any_sync_filenode_user }}/.aws"
 
 - name: Remote RPM install with yum
   yum:

@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Kirill Shklyaev <kirill@anytype.io>
+  author: anyproto
   description: Install any-sync-coordinator from official repository.
   license: MIT
   company: Anytype, INC

@@ -4,7 +4,7 @@ any_sync_consensusnode_user: any-sync-consensusnode
 any_sync_consensusnode_group: any-sync-consensusnode
 
 any_sync_consensusnode_version: 0.1.1
-any_sync_consensusnode_release_system: x86_64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
+any_sync_consensusnode_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_consensusnode_release_name_rhel: "any-sync-consensusnode-{{ any_sync_consensusnode_version }}-1.{{ any_sync_consensusnode_release_system }}.rpm"
 any_sync_consensusnode_download_url_rhel: "https://github.com/anyproto/any-sync-consensusnode/releases/download/v{{ any_sync_consensusnode_version}}/{{ any_sync_consensusnode_release_name_rhel }}"
 
@@ -16,35 +16,33 @@ any_sync_consensusnode_download_url_debian: "https://github.com/anyproto/any-syn
 any_sync_consensusnode_config_path: /etc/any-sync-consensusnode
 any_sync_consensusnode_networkStorePath: /var/lib/any-sync-consensusnode/networkStore
 any_sync_consensusnode_config:
-  apiServer:
-    server:
-      listenAddrs:
-        - "{{ ansible_host }}:8080"
-    stream:
-      maxMsgSizeMb: 256
-      timeoutMilliseconds: 1000
-  drpc:
-    stream:
-      maxMsgSizeMb: 256
-      timeoutMilliseconds: 1000
+  metric:
+    addr: 0.0.0.0:8000
+
   log:
     defaultLevel: ''
     namedLevels: {}
     production: false
+  networkStorePath: "{{ any_sync_consensusnode_networkStorePath }}"
+
   mongo:
-    connect: mongodb://any-sync-mongodb1:27017,any-sync-mongodb2:27017,any-sync-mongodb3:27017/?w=majority
+    connect: "mongodb://{{ hostvars['mongo1'].ansible_host }}:27001,{{ hostvars['mongo2'].ansible_host }}:27002,{{ hostvars['mongo3'].ansible_host }}:27003/?w=majority"
     database: consensus
     logCollection: log
-  metric:
-    addr: 0.0.0.0:8000
+
+  drpc:
+    stream:
+      maxMsgSizeMb: 256
+      timeoutMilliseconds: 1000
+
   yamux:
     dialTimeoutSec: 10
     listenAddrs:
-    - "{{ ansible_host }}:443"
+    - "{{ ansible_host }}:{{ any_type_yamux_port }}"
     writeTimeoutSec: 10
+
   quic:
     dialTimeoutSec: 10
     listenAddrs:
-    - "{{ ansible_host }}:5430"
+    - "{{ ansible_host }}:{{ any_sync_quic_port }}"
     writeTimeoutSec: 10
-  networkStorePath: "{{ any_sync_consensusnode_networkStorePath }}"

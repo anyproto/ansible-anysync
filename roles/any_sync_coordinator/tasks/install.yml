@@ -10,6 +10,17 @@
     group: "{{ any_sync_coordinator_group }}"
     state: present
 
+- name: Ensure config path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ any_sync_coordinator_user }}"
+    group: "{{ any_sync_coordinator_group }}"
+  with_items:
+    - "{{ any_sync_coordinator_config_path }}"
+    - "{{ any_sync_coordinator_networkStorePath }}"
+
 - name: Remote RPM install with yum
   yum:
     name: "{{ any_sync_coordinator_download_url_rhel }}"
@@ -18,4 +29,5 @@
 - name: Remote DEB install with apt
   apt:
     deb: "{{ any_sync_coordinator_download_url_debian }}"
+    state: present
   when: ansible_os_family == 'Debian'

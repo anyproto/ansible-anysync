@@ -1,22 +1,10 @@
 ---
 
-- name: Ensure config path
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-    owner: "{{ any_sync_filenode_user }}"
-    group: "{{ any_sync_filenode_group }}"
-  with_items:
-    - "{{ any_sync_filenode_config_path }}"
-    - "{{ any_sync_filenode_networkStorePath }}"
-    - "/home/{{ any_sync_filenode_user }}/.aws"
-
 - name: Copy credentials aws_cli
   template:
     src: aws_credentials.j2
     dest: "/home/{{ any_sync_filenode_user }}/.aws/credentials"
-    mode: 0755
+    mode: 0644
 
 - name: Copy config file
   template:
