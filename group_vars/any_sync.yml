@@ -1,69 +1,70 @@
 ---
-any_type_yamux_port: 1000
-any_sync_quic_port: 2000
 
-any_sync_accounts:
+any_sync_node_yamux_port: 1001
+any_sync_node_quic_port: 2001
+
+any_sync_coordinator_yamux_port: 1002
+any_sync_coordinator_quic_port: 2002
+
+any_sync_filenode_yamux_port: 1003
+any_sync_filenode_quic_port: 2003
+
+any_sync_consensusnode_yamux_port: 1004
+any_sync_consensusnode_quic_port: 2004
+
+any_sync_config:
+  networkId: "N6jGqb6SfHa3aENsCjvnSMXFR9F3eZUhCCziqs28rkUyJRWw"
+
   any-sync-node1:
     peerId: 12D3KooWRyBw2GnQskP8kUFD91Ja46ecfa33VXs8mcjVv3N4T1dQ
     peerKey: ixxHUiWSGpLJvP3b2NA9os8qjNQYe75YXKVAmfTdidfv/aTAoEZ0F9brWQtS51BqX5vxq6l0beq0e1TYgiSSnw==
     signingKey: ixxHUiWSGpLJvP3b2NA9os8qjNQYe75YXKVAmfTdidfv/aTAoEZ0F9brWQtS51BqX5vxq6l0beq0e1TYgiSSnw==
+    type: tree
+    addresses:
+      - "{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_node_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_node_quic_port }}"
+
   any-sync-node2:
     peerId: 12D3KooWQ21pt8h1UJCiKSYSMqEgu1PTVcfPyjRf1neHzT4Yjzde
     peerKey: Oy3wc92EiAk9/7QuGKCGjQzjm8NPv3lLrCM2rC3s3IzS/5XcnLOu69qYTnu3HfsNOx6nSS1jtNhLYCCbPTvUsQ==
     signingKey: Oy3wc92EiAk9/7QuGKCGjQzjm8NPv3lLrCM2rC3s3IzS/5XcnLOu69qYTnu3HfsNOx6nSS1jtNhLYCCbPTvUsQ==
+    type: tree
+    addresses:
+      - "{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_sync_node_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_sync_node_quic_port }}"
+
   any-sync-node3:
     peerId: 12D3KooWRy6YsEMBgqi5uzseug3dJsq5iFBbQmRsMyXmDPDbFS7j
     peerKey: euJieFMweIDeIbIjNJLFJn6tJiJRoyPRNk3NDN7wOi/v947g6seIzlKHDx+QeXK/5TsABnX5hCbi3CcEUZdXWg==
     signingKey: euJieFMweIDeIbIjNJLFJn6tJiJRoyPRNk3NDN7wOi/v947g6seIzlKHDx+QeXK/5TsABnX5hCbi3CcEUZdXWg==
+    type: tree
+    addresses:
+      - "{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_sync_node_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_sync_node_quic_port }}"
+
   any-sync-coordinator1:
     peerId: 12D3KooWRqFJtDMstqtcYAKZYEuGksD8A5WTHJZsFFk5beyrCVsq
     peerKey: NPJc2soR53KQE9llBMdFnOO9kgTF2kwPXJ9e0xVBND/t9NC80zaSo3cMMKCI8Hp7MMFHvBIyYRJyes6ao6LMfA==
     signingKey: "lrX4yWqQmHyN1zNh/tCz0h+53V2RJ4CtH3mbsK30jihz/yJuhULdvayk0WkpQv5GSm7Q408zKlkO0b+yblazpg=="
+    type: coordinator
+    addresses:
+      - "{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_sync_coordinator_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_sync_coordinator_quic_port }}"
+
   any-sync-filenode1:
     peerId: 12D3KooWCHZk6EwaYtAFS81pGrn1t5CCgBtTVKSxzuJkLYix8zwQ
     peerKey: x0iUgSGBqiyKBvlQl3T+LDaAwSA6J1Z/ebrCtuFawegkryS+P9tv/G7D/g3rwoFSaL4yz8G8eyElG/KhmiXLvw==
     signingKey: x0iUgSGBqiyKBvlQl3T+LDaAwSA6J1Z/ebrCtuFawegkryS+P9tv/G7D/g3rwoFSaL4yz8G8eyElG/KhmiXLvw==
+    type: file
+    addresses:
+      - "{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_sync_filenode_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_sync_filenode_quic_port }}"
+
   any-sync-consensusnode1:
     peerId: 12D3KooWG52DEyA8hk4UbdzEnfPfyBZ1MLjcN2Ts7cDQkoYHo1U1
     peerKey: 5rbynfEBmolXGZf6pqJAMQmo2yFR+tS9Wj4XmUHqeEtc50Svnt4VnYceL1H72NHNIB+UsJbHHOBpMgNGtHh2rg==
     signingKey: lrX4yWqQmHyN1zNh/tCz0h+53V2RJ4CtH3mbsK30jihz/yJuhULdvayk0WkpQv5GSm7Q408zKlkO0b+yblazpg==
-
-any_sync_network:
-  networkId: "N6jGqb6SfHa3aENsCjvnSMXFR9F3eZUhCCziqs28rkUyJRWw"
-  nodes:
-  - peerId: "{{ any_sync_accounts['any-sync-node1'].peerId }}"
+    type: consensus
     addresses:
-    - "{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - tree
-  - peerId: "{{ any_sync_accounts['any-sync-node2'].peerId }}"
-    addresses:
-    - "{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-node2'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - tree
-  - peerId: "{{ any_sync_accounts['any-sync-node3'].peerId }}"
-    addresses:
-    - "{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-node3'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - tree
-  - peerId: "{{ any_sync_accounts['any-sync-coordinator1'].peerId }}"
-    addresses:
-    - "{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-coordinator1'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - coordinator
-  - peerId: "{{ any_sync_accounts['any-sync-filenode1'].peerId }}"
-    addresses:
-    - "{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-filenode1'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - file
-  - peerId: "{{ any_sync_accounts['any-sync-consensusnode1'].peerId }}"
-    addresses:
-    - "{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_type_yamux_port }}"
-    - "quic://{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_sync_quic_port }}"
-    types:
-    - consensus
+      - "{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_sync_consensusnode_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-consensusnode1'].ansible_host }}:{{ any_sync_consensusnode_quic_port }}"

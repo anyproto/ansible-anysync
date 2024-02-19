@@ -16,11 +16,15 @@ any_sync_node_download_url_debian: "https://github.com/anyproto/any-sync-node/re
 any_sync_node_config_path: /etc/any-sync-node
 any_sync_node_networkStorePath: /var/lib/any-sync-node/networkStore
 any_sync_node_storage_path: /var/lib/any-sync-node/storage
+
+any_sync_node_metric_port: 8001
+any_sync_node_api_port: 8080
+
 any_sync_node_config:
   apiServer:
     server:
       listenAddrs:
-        - "{{ ansible_host }}:8080"
+        - "{{ ansible_host }}:{{ any_sync_node_api_port }}"
     stream:
       maxMsgSizeMb: 256
       timeoutMilliseconds: 1000
@@ -35,7 +39,7 @@ any_sync_node_config:
     namedLevels: {}
     production: false
   metric:
-    addr: 0.0.0.0:8000
+    addr: "0.0.0.0:{{ any_sync_node_metric_port }}"
 
   nodeSync:
     periodicSyncHours: 2
@@ -52,11 +56,11 @@ any_sync_node_config:
   yamux:
     dialTimeoutSec: 10
     listenAddrs:
-    - "{{ ansible_host }}:{{ any_type_yamux_port }}"
+    - "{{ ansible_host }}:{{ any_sync_node_yamux_port }}"
     writeTimeoutSec: 10
 
   quic:
     dialTimeoutSec: 10
     listenAddrs:
-    - "{{ ansible_host }}:{{ any_sync_quic_port }}"
+    - "{{ ansible_host }}:{{ any_sync_node_quic_port }}"
     writeTimeoutSec: 10
