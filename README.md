@@ -17,8 +17,8 @@ You can read the documentation on using any-sync [here](https://tech.anytype.io/
 ### Prerequisites
 
 * Minimum Ansible v2.11 recommended
-* [Redis with Bloom module](https://github.com/RedisBloom/RedisBloom)
-* MongoDB (version ≥6 recommended)
+* Minimum **x1** [Redis with Bloom module](https://github.com/RedisBloom/RedisBloom)
+* Minimum **x3 MongoDB** (version ≥6 recommended) in Replica Set mode ([requirement for any-sync-consensusnode](https://github.com/anyproto/any-sync-consensusnode/blob/v0.1.1/README.md?plain=1#L19))
 * S3 object storage: AWS S3 or self-hosted solution (for example [minio](https://github.com/minio/minio))
 
 ### Installing
@@ -32,16 +32,15 @@ git clone https://github.com/anyproto/ansible-anysync.git
 Use the playbook:
 
 ```
-ansible-playbook any-sync.yml
+ansible-playbook any-sync.yml -i inventory.yml
 ```
 
 ## Usage
 
-1. To start, fill in the account information and network configuration in the `group_vars/any_sync.yml` file, replacing the example data with your own.
-2. Define the structure of your any-sync cluster in the `inventory.yml` file.
-3. You can then make changes to the configuration of each any-sync-* daemon by editing its respective `default/main.yml` inside each role.
-
-⚠️ Use [any-sync-tools](https://github.com/anyproto/any-sync-tools) to generate account and network configuration.
+1. Define the structure of your any-sync cluster in the `inventory.yml` file. Minimum **x1 node of each type**, and also **x1 Redis** and **x3 MongoDB** in Replica Set mode. If not using AWS S3, specify **Minio server** address.
+2. Generate using [any-sync-tools](https://github.com/anyproto/any-sync-tools/blob/main/any-sync-network/README.md) and then copy `networkId`(from heart.yml file) of your network and `peerId, peerKey, signingKey` for each any-sync-* account. Paste this data into the `group_vars/any_sync.yml` file on the appropriate lines, replacing example data.
+3. You can then make configuration changes to each any-sync-* daemon by editing the corresponding `default/main.yml` within each role. Remember to change the MongoDB and Redis URLs if required.
+4. Import into your client app `heart.yml` file that you should have created during generation in step 2.
 
 ## Contribution
 Thank you for your desire to develop Anytype together!
