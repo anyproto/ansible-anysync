@@ -3,7 +3,7 @@
 any_sync_coordinator_user: any_sync_coordinator
 any_sync_coordinator_group: any_sync_coordinator
 
-any_sync_coordinator_version: 0.3.6
+any_sync_coordinator_version: 0.3.10
 any_sync_coordinator_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_coordinator_release_name_rhel: "any-sync-coordinator-{{ any_sync_coordinator_version }}-1.{{ any_sync_coordinator_release_system }}.rpm"
 any_sync_coordinator_download_url_rhel: "https://github.com/anyproto/any-sync-coordinator/releases/download/v{{ any_sync_coordinator_version}}/{{ any_sync_coordinator_release_name_rhel }}"
