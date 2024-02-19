@@ -33,3 +33,5 @@ jobs:
 
       - name: Create GH Release
         uses: softprops/action-gh-release@v0.1.15
+        with:
+          generate_release_notes: true
