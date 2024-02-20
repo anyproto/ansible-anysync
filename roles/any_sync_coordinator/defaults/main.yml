@@ -17,7 +17,7 @@ any_sync_coordinator_config_path: /etc/any-sync-coordinator
 any_sync_coordinator_networkStorePath: /var/lib/any-sync-coordinator/networkStore
 
 any_sync_coordinator_metric_port: 8002
-any_sync_coordinator_mongo_url: "mongodb://{{ hostvars['mongo1'].ansible_host }}:27001,{{ hostvars['mongo2'].ansible_host }}:27002,{{ hostvars['mongo3'].ansible_host }}:27003/?w=majority"
+any_sync_coordinator_mongo_url: "mongodb://{{ hostvars['mongo1'].ansible_host }}:27001,{{ hostvars['mongo2'].ansible_host }}:27002,{{ hostvars['mongo3'].ansible_host }}:27003"
 
 any_sync_coordinator_config:
   drpc:
