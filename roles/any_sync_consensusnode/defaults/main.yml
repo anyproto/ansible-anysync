@@ -3,7 +3,7 @@
 any_sync_consensusnode_user: any-sync-consensusnode
 any_sync_consensusnode_group: any-sync-consensusnode
 
-any_sync_consensusnode_version: 0.1.1
+any_sync_consensusnode_version: 0.1.5
 any_sync_consensusnode_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_consensusnode_release_name_rhel: "any-sync-consensusnode-{{ any_sync_consensusnode_version }}-1.{{ any_sync_consensusnode_release_system }}.rpm"
 any_sync_consensusnode_download_url_rhel: "https://github.com/anyproto/any-sync-consensusnode/releases/download/v{{ any_sync_consensusnode_version}}/{{ any_sync_consensusnode_release_name_rhel }}"
