@@ -3,7 +3,7 @@
 any_sync_filenode_user: any-sync-filenode
 any_sync_filenode_group: any-sync-filenode
 
-any_sync_filenode_version: 0.6.1
+any_sync_filenode_version: 0.7.2
 any_sync_filenode_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_filenode_release_name_rhel: "any-sync-filenode-{{ any_sync_filenode_version }}-1.{{ any_sync_filenode_release_system }}.rpm"
 any_sync_filenode_download_url_rhel: "https://github.com/anyproto/any-sync-filenode/releases/download/v{{ any_sync_filenode_version}}/{{ any_sync_filenode_release_name_rhel }}"
@@ -31,7 +31,6 @@ any_sync_filenode_config:
   drpc:
     stream:
       maxMsgSizeMb: 256
-      timeoutMilliseconds: 1000
 
   metric:
     addr: "0.0.0.0:{{ any_sync_filenode_metric_port }}"
@@ -40,6 +39,7 @@ any_sync_filenode_config:
     defaultLevel: ''
     namedLevels: {}
     production: false
+
   networkStorePath: "{{ any_sync_filenode_networkStorePath }}"
 
   redis:
@@ -55,7 +55,7 @@ any_sync_filenode_config:
     endpoint: "http://{{ hostvars['minio'].ansible_host }}:9000" # only for self-hosted S3
     forcePathStyle: true                                         # only for self-hosted S3
 
-  defaultLimit: 1073741824
+  defaultLimit: 1099511627776
 
   yamux:
     dialTimeoutSec: 10

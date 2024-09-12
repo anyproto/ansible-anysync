@@ -3,7 +3,7 @@
 any_sync_coordinator_user: any_sync_coordinator
 any_sync_coordinator_group: any_sync_coordinator
 
-any_sync_coordinator_version: 0.3.17
+any_sync_coordinator_version: 0.3.26
 any_sync_coordinator_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_coordinator_release_name_rhel: "any-sync-coordinator-{{ any_sync_coordinator_version }}-1.{{ any_sync_coordinator_release_system }}.rpm"
 any_sync_coordinator_download_url_rhel: "https://github.com/anyproto/any-sync-coordinator/releases/download/v{{ any_sync_coordinator_version}}/{{ any_sync_coordinator_release_name_rhel }}"
@@ -23,17 +23,17 @@ any_sync_coordinator_config:
   drpc:
     stream:
       maxMsgSizeMb: 256
-      timeoutMilliseconds: 1000
 
   defaultLimits:
-    sharedSpacesLimit: 3
-    spaceMembersRead: 3
-    spaceMembersWrite: 3
+    spaceMembersRead: 1000
+    spaceMembersWrite: 1000
+    sharedSpacesLimit: 1000
 
   log:
     defaultLevel: ''
     namedLevels: {}
     production: false
+
   networkStorePath: "{{ any_sync_coordinator_networkStorePath }}"
 
   metric:
@@ -46,8 +46,8 @@ any_sync_coordinator_config:
     spaces: spaces
 
   spaceStatus:
-    deletionPeriodDays: 30
-    runSeconds: 20
+    runSeconds: 5
+    deletionPeriodDays: 0
 
   yamux:
     dialTimeoutSec: 10
