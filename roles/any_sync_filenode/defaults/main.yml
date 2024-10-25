@@ -3,7 +3,7 @@
 any_sync_filenode_user: any-sync-filenode
 any_sync_filenode_group: any-sync-filenode
 
-any_sync_filenode_version: 0.7.2
+any_sync_filenode_version: 0.8.1
 any_sync_filenode_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_filenode_release_name_rhel: "any-sync-filenode-{{ any_sync_filenode_version }}-1.{{ any_sync_filenode_release_system }}.rpm"
 any_sync_filenode_download_url_rhel: "https://github.com/anyproto/any-sync-filenode/releases/download/v{{ any_sync_filenode_version}}/{{ any_sync_filenode_release_name_rhel }}"

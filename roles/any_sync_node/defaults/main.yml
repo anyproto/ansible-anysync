@@ -3,7 +3,7 @@
 any_sync_node_user: any-sync-node
 any_sync_node_group: any-sync-node
 
-any_sync_node_version: 0.3.34
+any_sync_node_version: 0.4.3
 any_sync_node_release_system: amd64 # available: aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_node_release_name_rhel: "any-sync-node-{{ any_sync_node_version }}-1.{{ any_sync_node_release_system }}.rpm"
 any_sync_node_download_url_rhel: "https://github.com/anyproto/any-sync-node/releases/download/v{{ any_sync_node_version}}/{{ any_sync_node_release_name_rhel }}"
