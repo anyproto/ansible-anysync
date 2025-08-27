@@ -1,33 +1,33 @@
 ---
 - name: Ensure group
-  group:
+  ansible.builtin.group:
     name: "{{ any_sync_filenode_group }}"
     state: present
 
 - name: Сreate a user
-  user:
+  ansible.builtin.user:
     name: "{{ any_sync_filenode_user }}"
     group: "{{ any_sync_filenode_group }}"
     state: present
 
 - name: Ensure config path
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0755
     owner: "{{ any_sync_filenode_user }}"
     group: "{{ any_sync_filenode_group }}"
-  with_items:
+  loop:
     - "{{ any_sync_filenode_config_path }}"
     - "{{ any_sync_filenode_networkStorePath }}"
     - "/home/{{ any_sync_filenode_user }}/.aws"
 
 - name: Remote RPM install with yum
-  yum:
+  ansible.builtin.yum:
     name: "{{ any_sync_filenode_download_url_rhel }}"
   when: ansible_os_family == 'RedHat'
 
 - name: Remote DEB install with apt
-  apt:
+  ansible.builtin.apt:
     deb: "{{ any_sync_filenode_download_url_debian }}"
   when: ansible_os_family == 'Debian'

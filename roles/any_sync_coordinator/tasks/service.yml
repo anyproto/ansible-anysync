@@ -1,6 +1,6 @@
 ---
 - name: Start any-sync-coordinator service
-  systemd:
+  ansible.builtin.systemd:
     name: any-sync-coordinator
     enabled: yes
     state: started

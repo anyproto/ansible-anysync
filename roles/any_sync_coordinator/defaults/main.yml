@@ -3,7 +3,7 @@
 any_sync_coordinator_user: any_sync_coordinator
 any_sync_coordinator_group: any_sync_coordinator
 
-any_sync_coordinator_version: 0.4.1
+any_sync_coordinator_version: 0.6.0
 any_sync_coordinator_release_system: amd64 # aarch64.rpm x86_64.rpm amd64.deb arm64.deb
 any_sync_coordinator_release_name_rhel: "any-sync-coordinator-{{ any_sync_coordinator_version }}-1.{{ any_sync_coordinator_release_system }}.rpm"
 any_sync_coordinator_download_url_rhel: "https://github.com/anyproto/any-sync-coordinator/releases/download/v{{ any_sync_coordinator_version}}/{{ any_sync_coordinator_release_name_rhel }}"
@@ -18,9 +18,12 @@ any_sync_coordinator_networkStorePath: /var/lib/any-sync-coordinator/networkStor
 
 any_sync_coordinator_metric_port: 8002
 any_sync_coordinator_mongo_url: "mongodb://{{ hostvars['mongo1'].ansible_host }}:27001,{{ hostvars['mongo2'].ansible_host }}:27002,{{ hostvars['mongo3'].ansible_host }}:27003"
+# for standalone replica-set:
+# any_sync_coordinator_mongo_url: "mongodb://{{ hostvars['mongo1'].ansible_host }}:27001"
 
 any_sync_coordinator_config:
   drpc:
+    snappy: true
     stream:
       maxMsgSizeMb: 256
 

@@ -1,19 +1,18 @@
 ---
-
 - name: Copy credentials aws_cli
-  template:
+  ansible.builtin.template:
     src: aws_credentials.j2
     dest: "/home/{{ any_sync_filenode_user }}/.aws/credentials"
     mode: 0644
 
 - name: Copy config file
-  template:
+  ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ any_sync_filenode_config_path }}/config.yml"
   notify: Restart any-sync-filenode
 
 - name: Copy systemd init file
-  template:
+  ansible.builtin.template:
     src: service.j2
     dest: /etc/systemd/system/any-sync-filenode.service
   notify: Restart any-sync-filenode
