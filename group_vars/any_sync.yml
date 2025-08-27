@@ -13,7 +13,7 @@ any_sync_consensusnode_yamux_port: 1004
 any_sync_consensusnode_quic_port: 2004
 
 any_sync_config:
-  networkId: "N6jGqb6SfHa3aENsCjvnSMXFR9F3eZUhCCziqs28rkUyJRWw"
+  networkId: N6jGqb6SfHa3aENsCjvnSMXFR9F3eZUhCCziqs28rkUyJRWw
 
   any-sync-node1:
     peerId: 12D3KooWRyBw2GnQskP8kUFD91Ja46ecfa33VXs8mcjVv3N4T1dQ
