@@ -1,5 +1,5 @@
 ---
-namespace: anyproto
+namespace: mighty_sponge
 name: any_sync
 
 version: %VERSION%
