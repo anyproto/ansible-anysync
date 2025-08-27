@@ -1,13 +1,12 @@
 ---
-
 - name: Copy config file
-  template:
+  ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ any_sync_node_config_path }}/config.yml"
   notify: Restart any-sync-node
 
 - name: Copy systemd init file
-  template:
+  ansible.builtin.template:
     src: service.j2
     dest: /etc/systemd/system/any-sync-node.service
   notify: Restart any-sync-node

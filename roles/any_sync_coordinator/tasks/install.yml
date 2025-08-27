@@ -1,33 +1,33 @@
 ---
 - name: Ensure group
-  group:
+  ansible.builtin.group:
     name: "{{ any_sync_coordinator_group }}"
     state: present
 
 - name: Сreate a user
-  user:
+  ansible.builtin.user:
     name: "{{ any_sync_coordinator_user }}"
     group: "{{ any_sync_coordinator_group }}"
     state: present
 
 - name: Ensure config path
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: 0755
     owner: "{{ any_sync_coordinator_user }}"
     group: "{{ any_sync_coordinator_group }}"
-  with_items:
+  loop:
     - "{{ any_sync_coordinator_config_path }}"
     - "{{ any_sync_coordinator_networkStorePath }}"
 
 - name: Remote RPM install with yum
-  yum:
+  ansible.builtin.yum:
     name: "{{ any_sync_coordinator_download_url_rhel }}"
   when: ansible_os_family == 'RedHat'
 
 - name: Remote DEB install with apt
-  apt:
+  ansible.builtin.apt:
     deb: "{{ any_sync_coordinator_download_url_debian }}"
     state: present
   when: ansible_os_family == 'Debian'

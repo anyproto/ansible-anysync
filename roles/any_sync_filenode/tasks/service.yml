@@ -1,6 +1,6 @@
 ---
 - name: Start any-sync-filenode service
-  systemd:
+  ansible.builtin.systemd:
     name: any-sync-filenode
     enabled: yes
     state: started

@@ -1,6 +1,6 @@
 ---
 - name: Start any-sync-consensusnode service
-  systemd:
+  ansible.builtin.systemd:
     name: any-sync-consensusnode
     enabled: yes
     state: started
