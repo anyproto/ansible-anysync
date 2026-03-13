@@ -1,48 +1,114 @@
-# Ansible-anysync
+# ansible-anysync
 
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installing](#installing)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.md)
+[![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04%20%7C%20Amazon%20Linux%202-lightgrey)](#prerequisites)
+
+Ansible roles for deploying [any-sync](https://tech.anytype.io/) daemons. Supports Debian- and RHEL-based Linux systems.
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Usage](#usage)
+  - [1. Configure inventory](#1-configure-inventory)
+  - [2. Generate network keys](#2-generate-network-keys)
+  - [3. Configure roles](#3-configure-roles)
+  - [4. Run the playbook](#4-run-the-playbook)
 - [Contribution](#contribution)
 
-## Getting Started
+## Prerequisites
 
-Ansible role for any-sync daemons. Currently, this works on Debian and RHEL based linux systems. Tested platforms are:
-* Ubuntu 22.04
-* Amazon Linux 2
+**Infrastructure requirements:**
 
-You can read the documentation on using any-sync [here](https://tech.anytype.io/).
+| Component | Count | Notes |
+|-----------|-------|-------|
+| [any-sync-node](https://github.com/anyproto/any-sync-node) | 3+ | Document sync nodes |
+| [any-sync-coordinator](https://github.com/anyproto/any-sync-coordinator) | 1 | Network coordinator, manages spaces and members |
+| [any-sync-filenode](https://github.com/anyproto/any-sync-filenode) | 1 | File storage node |
+| [any-sync-consensusnode](https://github.com/anyproto/any-sync-consensusnode) | 1 | Consensus for conflict resolution |
+| Redis with [Bloom](https://github.com/RedisBloom/RedisBloom) module | 1 | Filenode index |
+| MongoDB ≥4 (latest version is recommended) | 1–3 | Coordinator state; must be in Replica Set mode |
+| S3 storage | 1 | Object storage for files — any S3-compatible cloud (AWS S3, GCS, etc.) or self-hosted (e.g. [Minio](https://github.com/minio/minio)) |
 
-### Prerequisites
+**Tooling:**
 
-* Minimum Ansible v2.11 recommended
-* **x1** [Redis with Bloom module](https://github.com/RedisBloom/RedisBloom)
-* **x1-3** MongoDB (version ≥6 recommended) in Replica Set mode
-* S3 object storage: AWS S3 or self-hosted solution (for example [minio](https://github.com/minio/minio))
+- Ansible v2.11+
+- [any-sync-tools](https://github.com/anyproto/any-sync-tools/blob/main/any-sync-network/README.md) for generating network configuration
 
-### Installing
+## Installation
 
-Clone the current repository with roles
-
-```
+```bash
 git clone https://github.com/anyproto/ansible-anysync.git
-```
-
-Use the playbook:
-
-```
-ansible-playbook any-sync.yml -i inventory.ini
 ```
 
 ## Usage
 
-1. Define the structure of your any-sync cluster in the `inventory.ini` file. Minimum **x3 any-sync-node and x1 nodes of other types**, and also **x1 Redis** and **x1-3 MongoDB** in Replica Set mode. If not using AWS S3, specify **Minio server** address.
-2. Generate using [any-sync-tools](https://github.com/anyproto/any-sync-tools/blob/main/any-sync-network/README.md) and then copy `networkId`(from client.yml file) of your network and `peerId, peerKey, signingKey` for each any-sync-* account. Paste this data into the `group_vars/any_sync.yml` file on the appropriate lines, replacing example data.
-3. You can then make configuration changes to each any-sync-* daemon by editing the corresponding `default/main.yml` within each role. The latest production versions of any-sync components are available [here](https://puppetdoc.anytype.io/api/v1/prod-any-sync-compatible-versions/). Remember to change the MongoDB and Redis URLs if required.
-4. Import into your client app `client.yml` file that you should have created during generation in step 2.
+### 1. Configure inventory
+
+Edit `inventory.ini` to match your infrastructure. Example structure:
+
+```ini
+[any_sync_node]
+any-sync-node1 ansible_host=10.10.0.1
+any-sync-node2 ansible_host=10.10.0.2
+any-sync-node3 ansible_host=10.10.0.3
+
+[any_sync_filenode]
+any-sync-filenode1 ansible_host=10.10.1.1
+
+[any_sync_coordinator]
+any-sync-coordinator1 ansible_host=10.10.2.1
+
+[any_sync_consensusnode]
+any-sync-consensusnode1 ansible_host=10.10.3.1
+
+[any_sync:children]
+any_sync_node
+any_sync_filenode
+any_sync_coordinator
+any_sync_consensusnode
+
+; optional: self-hosted S3 (e.g. Minio)
+[s3]
+minio ansible_host=10.10.6.1
+```
+
+### 2. Generate network keys
+
+Use [any-sync-tools](https://github.com/anyproto/any-sync-tools/blob/main/any-sync-network/README.md) to generate your network configuration, then copy the following values into `group_vars/any_sync.yml`:
+
+- `networkId` — from the generated `client.yml`
+- `peerId`, `peerKey`, `signingKey` — for each any-sync-\* node
+
+```yaml
+any_sync_config:
+  networkId: <your-network-id>
+
+  any-sync-node1:
+    peerId: <peerId>
+    peerKey: <peerKey>
+    signingKey: <signingKey>
+    type: tree
+    addresses:
+      - "{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_node_yamux_port }}"
+      - "quic://{{ hostvars['any-sync-node1'].ansible_host }}:{{ any_sync_node_quic_port }}"
+  # ... repeat for each node
+```
+
+### 3. Configure roles
+
+Tune each daemon's settings by editing `defaults/main.yml` inside the corresponding role directory. This includes MongoDB/Redis URLs, ports, and other options.
+
+The latest compatible component versions are published at the [any-sync versions API](https://puppetdoc.anytype.io/api/v1/prod-any-sync-compatible-versions/).
+
+### 4. Run the playbook
+
+```bash
+ansible-playbook any-sync.yml -i inventory.ini
+```
+
+After the cluster is up, import the `client.yml` file (generated in step 2) into your Anytype client app.
 
 ## Contribution
+
 Thank you for your desire to develop Anytype together!
 
 ❤️ This project and everyone involved in it is governed by the [Code of Conduct](https://github.com/anyproto/.github/blob/main/docs/CODE_OF_CONDUCT.md).
