@@ -1,9 +1,9 @@
 # ansible-anysync
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE.md)
-[![Platform](https://img.shields.io/badge/platform-Ubuntu%2022.04%20%7C%20Amazon%20Linux%202-lightgrey)](#prerequisites)
+[![Platform](https://img.shields.io/badge/platform-Debian%20%7C%20RHEL-lightgrey)](#prerequisites)
 
-Ansible roles for deploying [any-sync](https://tech.anytype.io/) daemons. Supports Debian- and RHEL-based Linux systems.
+Ansible roles for deploying [any-sync](https://tech.anytype.io/) daemons. Supports Debian- and RHEL-based Linux distributions.
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
