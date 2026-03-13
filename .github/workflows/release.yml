@@ -24,7 +24,7 @@ jobs:
 
       - name: Update version for galaxy
         run: |
-          sed -i "s/%VERSION%/${{ github.ref_name }}/g" galaxy.yml
+          sed -i "s/0.0.0/${{ github.ref_name }}/g" galaxy.yml
 
       - name: Trigger a new import on Galaxy.
         run: |

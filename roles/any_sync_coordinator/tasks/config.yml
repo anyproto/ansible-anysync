@@ -3,18 +3,21 @@
   ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ any_sync_coordinator_config_path }}/config.yml"
-  notify: Restart any-sync-coordinator
+    mode: "0644"
+  notify: Restart service
 
 - name: Copy network config file
   ansible.builtin.template:
     src: network.yml.j2
     dest: "{{ any_sync_coordinator_config_path }}/network.yml"
+    mode: "0644"
 
 - name: Copy systemd init file
   ansible.builtin.template:
     src: service.j2
     dest: /etc/systemd/system/any-sync-coordinator.service
-  notify: Restart any-sync-coordinator
+    mode: "0644"
+  notify: Restart service
 
 - name: Apply network configuration
   run_once: true

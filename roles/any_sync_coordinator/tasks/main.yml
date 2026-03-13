@@ -1,16 +1,16 @@
 ---
 
 - name: Install
-  import_tasks: install.yml
+  ansible.builtin.import_tasks: install.yml
   tags:
     - install
 
 - name: Configure
-  import_tasks: config.yml
+  ansible.builtin.import_tasks: config.yml
   tags:
     - configure
 
 - name: Service
-  import_tasks: service.yml
+  ansible.builtin.import_tasks: service.yml
   tags:
     - service

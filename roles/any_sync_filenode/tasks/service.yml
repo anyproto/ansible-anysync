@@ -2,6 +2,6 @@
 - name: Start any-sync-filenode service
   ansible.builtin.systemd:
     name: any-sync-filenode
-    enabled: yes
+    enabled: true
     state: started
-    daemon_reload: yes
+    daemon_reload: true

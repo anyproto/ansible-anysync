@@ -2,6 +2,6 @@
 - name: Start any-sync-coordinator service
   ansible.builtin.systemd:
     name: any-sync-coordinator
-    enabled: yes
+    enabled: true
     state: started
-    daemon_reload: yes
+    daemon_reload: true

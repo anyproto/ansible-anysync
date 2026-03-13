@@ -2,7 +2,7 @@
 namespace: mighty_sponge
 name: any_sync
 
-version: %VERSION%
+version: 0.0.0
 readme: README.md
 authors:
   - anyproto

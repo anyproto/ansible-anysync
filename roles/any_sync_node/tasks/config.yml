@@ -3,10 +3,12 @@
   ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ any_sync_node_config_path }}/config.yml"
-  notify: Restart any-sync-node
+    mode: "0644"
+  notify: Restart service
 
 - name: Copy systemd init file
   ansible.builtin.template:
     src: service.j2
     dest: /etc/systemd/system/any-sync-node.service
-  notify: Restart any-sync-node
+    mode: "0644"
+  notify: Restart service

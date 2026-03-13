@@ -4,7 +4,7 @@
     name: "{{ any_sync_consensusnode_group }}"
     state: present
 
-- name: Сreate a user
+- name: Create a user
   ansible.builtin.user:
     name: "{{ any_sync_consensusnode_user }}"
     group: "{{ any_sync_consensusnode_group }}"
@@ -14,19 +14,19 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: "0755"
     owner: "{{ any_sync_consensusnode_user }}"
     group: "{{ any_sync_consensusnode_group }}"
   loop:
     - "{{ any_sync_consensusnode_config_path }}"
-    - "{{ any_sync_consensusnode_networkStorePath }}"
+    - "{{ any_sync_consensusnode_network_store_path }}"
 
 - name: Remote RPM install with yum
-  ansible.builtin.yum:
+  ansible.builtin.dnf:
     name: "{{ any_sync_consensusnode_download_url_rhel }}"
-  when: ansible_os_family == 'RedHat'
+  when: ansible_facts['os_family'] == 'RedHat'
 
 - name: Remote DEB install with apt
   ansible.builtin.apt:
     deb: "{{ any_sync_consensusnode_download_url_debian }}"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'

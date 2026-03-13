@@ -2,5 +2,6 @@
 - name: Restart any-sync-consensusnode
   ansible.builtin.systemd:
     name: any-sync-consensusnode
-    daemon_reload: yes
+    daemon_reload: true
     state: restarted
+  listen: Restart service
